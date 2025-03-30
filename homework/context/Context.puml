@@ -1,0 +1,26 @@
+@startuml
+title 'Smart Home' Application Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(user, "User", "A user of the 'Smart Home'  Application")
+Person(employee, "Employee of company", "An administrator managing the system")
+System(SmartHomeApplication, "'Smart Home' System", "System SmartHome")
+
+'System_Ext(AddHeatingSysytemToSmartHome, "Добавить оборудование", "Добавление оборудования")
+System_Ext(HeatingSystem, "Топливная система", "Топливная система заказчика")
+System_Ext(Sensor, "Температурный датчик", "Датчик температуры в доме")
+System_Ext(RDBMS, "СУБД", "Хранит данные")
+
+Rel(user, SmartHomeApplication, "Управляют отоплением")
+Rel(user, SmartHomeApplication, "Проверяют температуру")
+Rel(employee, SmartHomeApplication,"Добавляют топливную систтему Заказчиков к SmartHome")
+'Rel(SmartHomeApplication,AddHeatingSysytemToSmartHome,"Добавить оборудование в систему")
+Rel(SmartHomeApplication,HeatingSystem,"Включить/выключить отопление")
+Rel(SmartHomeApplication,Sensor,"Получить данные температуры из системы")
+Rel(SmartHomeApplication,RDBMS,"Сохранить, получить данные")
+
+
+@enduml
